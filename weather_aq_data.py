@@ -16,8 +16,8 @@ def _get_weather_data(geo_data: dict) -> tuple:
     latitude = geo_data['latitude']
     longitude = geo_data['longitude']
 
-    # weather_data = requests.get(f'{WEATHER_API}/weather?lat={latitude}&lon={longitude}&units=metric&appid={WEATHER_API_KEY}').json()
-    weather_data = json.load(open('data/res.json'))
+    weather_data = requests.get(f'{_WEATHER_API}/weather?lat={latitude}&lon={longitude}&units=metric&appid={_WEATHER_API_KEY}').json()
+    # weather_data = json.load(open('data/res.json'))
 
     weather_values = {'code': weather_data['weather'][0]['id'], **weather_data['main']}
     wind_values = {**weather_data['wind']}
@@ -28,8 +28,8 @@ def _get_aq_data(geo_data: dict) -> dict:
     latitude = geo_data['latitude']
     longitude = geo_data['longitude']
 
-    # aq_data = requests.get(f'{WEATHER_API}/air_pollution?lat={latitude}&lon={longitude}&units=metric&appid={WEATHER_API_KEY}').json()
-    aq_data = json.load(open('data/res2.json'))
+    aq_data = requests.get(f'{_WEATHER_API}/air_pollution?lat={latitude}&lon={longitude}&units=metric&appid={_WEATHER_API_KEY}').json()
+    # aq_data = json.load(open('data/res2.json'))
 
     aq_values = {'code': aq_data['list'][0]['main']['aqi'], **aq_data['list'][0]['components']}
 
