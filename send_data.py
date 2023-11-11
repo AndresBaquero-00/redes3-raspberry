@@ -20,5 +20,5 @@ encoded = cipher.encrypt(Padding.pad(json.dumps(data).encode(), 16))
 res = requests.post(f'{API_URL}/save', json=data, headers={'Content-Type': 'application/json'})
 print(res.content)
 
-res = requests.post(f'{API_URL}/save-secure', data=encoded, headers={'Content-Type': 'text/plain'})
+res = requests.post(f'{API_URL}/save-secure', data=encoded.hex(), headers={'Content-Type': 'text/plain'})
 print(res.content)
